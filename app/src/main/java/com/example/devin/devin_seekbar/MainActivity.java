@@ -74,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            text01.setText("밝기 수준 : " + i);
+            if (i < 30) {
+                text01.setText("밝기 수준 : 하");
+            }else if (i < 70) {
+                text01.setText("밝기 수준 : 중");
+            }else {
+                text01.setText("밝기 수준 : 상");
+            }
         }
 
         @Override
@@ -84,7 +90,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            hidePanel();
+            int i = seekBar.getProgress();
+
+            if (i < 30) {
+                seekBar.setProgress(0);
+            } else if (i < 70) {
+                seekBar.setProgress(50);
+            } else {
+                seekBar.setProgress(100);
+            }
         }
     }
 
